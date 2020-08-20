@@ -1,0 +1,65 @@
+<ng-container *ngIf="!loading; else isLoading">
+  <ng-container *ngIf="!loadError; else isLoadError">
+
+    <!-- <h1>{{survey.title}}</h1> -->
+
+    <ng-container *ngIf="!saving; else isSaving">
+      <ng-container *ngIf="!saveError; else isSaveError">
+
+        <ng-container [ngSwitch]="stage">
+
+          <app-survey-intro *ngSwitchCase="'intro'"
+                            (onStart)="start()">
+          </app-survey-intro>
+
+          <app-survey-question *ngSwitchCase="'questions'"
+                               [survey]="survey"
+                               [question]="currentQuestion"
+                               (onNext)="nextQuestion($event)"
+                               (onPrevious)="previousQuestion($event)">
+          </app-survey-question>
+
+          <app-survey-demographics *ngSwitchCase="'demographics'"
+                                   [survey]="survey"
+                                   (onSubmit)="submitDemographics($event)">
+          </app-survey-demographics>
+
+          <app-thanks *ngSwitchCase="'thanks'"></app-thanks>
+
+        </ng-container>
+
+      </ng-container>
+    </ng-container>
+
+  </ng-container>
+</ng-container>
+
+<ng-template #isLoading>
+  Loading...
+</ng-template>
+
+<ng-template #isLoadError>
+  <div>
+    Sorry we were unable to load this survey.
+  </div>
+  <div>
+    {{loadError | json}}
+  </div>
+</ng-template>
+
+<ng-template #isSaving>
+  Saving...
+</ng-template>
+
+<ng-template #isSaveError>
+  <div>
+    Sorry we were unable to save your answers.
+  </div>
+  <div>
+    {{loadError | json}}
+  </div>
+
+  <div>
+    <button (click)="submit()">Try Again</button>
+  </div>
+</ng-template>

@@ -1,0 +1,718 @@
+<div class="ques-container container">
+  <img class="wave-bg" src="../../../../assets//images/header-desktop.svg" alt="">
+  <div class="ques-no">
+    <span class="title">{{'Q'+(survey?.questions?.length + currentIndex)}}</span>
+    <span>
+      <img src="https://mwah.live/wp-content/themes/mwah/images/logo-home.svg" width="138" height="32" alt="">
+    </span>
+  </div>
+
+  <div class="heading">
+    <H2>A. Personal Identity</H2>
+  </div>
+
+  <form [formGroup]="personalIdentityForm">
+    <div class="row">
+
+      <!-- <div class="col-lg-12 subheading">A. Gender</div>
+        <div class="col-lg-4">
+          <select class="form-control" formControlName="gender">
+            <option [ngValue]="null" disabled>Please Select</option>
+            <option value='male'>Male</option>
+            <option value='female'>Female</option>
+            <option value='Prefer Not to disclose'>Prefer Not to disclose</option>
+            <option value='other'>Other</option>
+          </select>
+        </div> -->
+      <div class="col-lg-12 subheading">Gender</div>
+      <div class="col-lg-3">
+        <div class="outline"
+          [ngClass]="{'selected-option' : (personalIdentityForm?.value?.gender == 'Male'),'not-valid': (validationCSS && personalIdentityForm.controls.gender.status==='INVALID')}"
+          (click)="gender1.click()">
+          <div>
+            <input type="radio" value="Male" name="gender" formControlName="gender" #gender1
+              [checked]="personalIdentityForm?.value?.gender == 'Male'">
+          </div>
+          <div>Male</div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="outline" [ngClass]="{'selected-option' : (personalIdentityForm?.value?.gender == 'Female'),'not-valid': (validationCSS && personalIdentityForm.controls.gender.status==='INVALID')}"
+          (click)="gender2.click()">
+          <div><input type="radio" value="Female" name="gender" formControlName="gender" #gender2></div>
+          <div>Female</div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="outline"
+          [ngClass]="{'selected-option' : (personalIdentityForm?.value?.gender == 'Prefer Not to disclose'),'not-valid': (validationCSS && personalIdentityForm.controls.gender.status==='INVALID')}"
+          (click)="gender3.click()">
+          <div><input type="radio" value="Prefer Not to disclose" name="gender" formControlName="gender" #gender3></div>
+          <div>Prefer Not to disclose</div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="outline" [ngClass]="{'selected-option' : (personalIdentityForm?.value?.gender == 'Other'),'not-valid': (validationCSS && personalIdentityForm.controls.gender.status==='INVALID')}"
+          (click)="gender4.click()">
+          <div><input type="radio" value="Other" name="gender" formControlName="gender" #gender4></div>
+          <div>Other</div>
+        </div>
+      </div>
+
+      <div class="input-group col-lg-1" *ngIf="personalIdentityForm?.value?.gender ==  'Other'"
+        style="align-items: center;font-size: 1.1em;">
+        If other:
+      </div>
+      <div class="input-group col-lg-11" *ngIf="personalIdentityForm?.value?.gender ==  'Other'"
+      [ngClass]="{'not-valid': (validationCSS && personalIdentityForm.controls.otherGenderDesc.status==='INVALID')}">
+        <input type="text" class="form-control" placeholder="Please Specify!" style="height: 3.4em;"
+          formControlName="otherGenderDesc">
+      </div>
+
+      <div class="col-lg-12 subheading">Age</div>
+      <div class="col-lg-3">
+        <div class="outline" [ngClass]="{'selected-option' : (personalIdentityForm?.value?.age == '< 18'),'not-valid': (validationCSS && personalIdentityForm.controls.age.status==='INVALID')}"
+          (click)="age1.click()">
+          <div><input type="radio" value="< 18" name="age" formControlName="age" #age1></div>
+          <div>
+            < 18</div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="outline" [ngClass]="{'selected-option' : (personalIdentityForm?.value?.age == '19-25'),'not-valid': (validationCSS && personalIdentityForm.controls.age.status==='INVALID')}"
+            (click)="age2.click()">
+            <div><input type="radio" value="19-25" name="age" formControlName="age" #age2></div>
+            <div> 19-25</div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="outline" [ngClass]="{'selected-option' : (personalIdentityForm?.value?.age == '26-35'),'not-valid': (validationCSS && personalIdentityForm.controls.age.status==='INVALID')}"
+            (click)="age3.click()">
+            <div><input type="radio" value="26-35" name="age" formControlName="age" #age3></div>
+            <div> 26-35</div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="outline" [ngClass]="{'selected-option' : (personalIdentityForm?.value?.age == '36-45'),'not-valid': (validationCSS && personalIdentityForm.controls.age.status==='INVALID')}"
+            (click)="age4.click()">
+            <div><input type="radio" value="36-45" name="age" formControlName="age" #age4></div>
+            <div> 36-45</div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="outline" [ngClass]="{'selected-option' : (personalIdentityForm?.value?.age == '46-55'),'not-valid': (validationCSS && personalIdentityForm.controls.age.status==='INVALID')}"
+            (click)="age5.click()">
+            <div><input type="radio" value="46-55" name="age" formControlName="age" #age5></div>
+            <div> 46-55</div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="outline" [ngClass]="{'selected-option' : (personalIdentityForm?.value?.age == '56-65'),'not-valid': (validationCSS && personalIdentityForm.controls.age.status==='INVALID')}"
+            (click)="age6.click()">
+            <div><input type="radio" value="56-65" name="age" formControlName="age" #age6></div>
+            <div> 56-65</div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="outline" [ngClass]="{'selected-option' : (personalIdentityForm?.value?.age == '> 65'),'not-valid': (validationCSS && personalIdentityForm.controls.age.status==='INVALID')}"
+            (click)="age7.click()">
+            <div><input type="radio" value="> 65" name="age" formControlName="age" #age7></div>
+            <div> > 65</div>
+          </div>
+        </div>
+        <!-- <div class="col-lg-4">
+          <select class="form-control" formControlName="age">
+            <option [ngValue]="null" disabled>Please Select</option>
+            <option value='<18'> < 18</option>
+            <option value='19-25'>19 - 25</option>
+            <option value='26-35'>26 - 35</option>
+            <option value='36-45'>36 - 45</option>
+            <option value='46-55'>46 - 55</option>
+            <option value='56-65'>56 - 65</option>
+            <option value='>65'> > 65</option>
+          </select>
+        </div> -->
+
+        <!-- <div class="col-lg-12 subheading">Country of birth / Passport</div>
+        <div class="col-lg-4">
+          <select class="form-control"  formControlName="country">
+            <option [ngValue]="null" disabled>Please Select</option>
+            <option value='australia'>Australia</option>
+          </select>
+        </div> -->
+
+        <div class="col-lg-6">
+          <div class="mini-heading">Country of birth / Passport</div>
+          <select class="form-control" formControlName="country"
+          [ngClass]="{'not-valid': (validationCSS && personalIdentityForm.controls.country.status==='INVALID')}">
+            <option [ngValue]="null" disabled>Please Select</option>
+            <option value='australia'>Australia</option>
+          </select>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="mini-heading">State</div>
+          <select class="form-control" formControlName="state"
+          [ngClass]="{'not-valid': (validationCSS && personalIdentityForm.controls.state.status==='INVALID')}">
+            <option [ngValue]="null" disabled>Please Select</option>
+            <option value='ACT'>ACT</option>
+            <option value='NT'>NT</option>
+            <option value='NSW'>NSW</option>
+            <option value='QLD'>QLD</option>
+            <option value='SA'>SA</option>
+            <option value='TAS'>TAS</option>
+            <option value='VIC'>VIC</option>
+            <option value='WA'>WA</option>
+          </select>
+        </div>
+
+        <!-- <div class="col-lg-12 subheading">State</div>
+        <div class="col-lg-4">
+          <select class="form-control" formControlName="state">
+            <option [ngValue]="null" disabled>Please Select</option>
+            <option value='ACT'>ACT</option>
+            <option value='NT'>NT</option>
+            <option value='NSW'>NSW</option>
+            <option value='QLD'>QLD</option>
+            <option value='SA'>SA</option>
+            <option value='TAS'>TAS</option>
+            <option value='VIC'>VIC</option>
+            <option value='WA'>WA</option>
+          </select>
+        </div> -->
+
+        <div class="col-lg-12 subheading">LGBTI</div>
+
+        <div class="col-lg-3">
+          <div class="outline" [ngClass]="{'selected-option' : (personalIdentityForm?.value?.LGBTI == 'Yes'),'not-valid': (validationCSS && personalIdentityForm.controls.LGBTI.status==='INVALID')}"
+            (click)="lgbti1.click()">
+            <div><input type="radio" value="Yes" name="LGBTI" formControlName="LGBTI" #lgbti1></div>
+            <div> Yes</div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="outline" [ngClass]="{'selected-option' : (personalIdentityForm?.value?.LGBTI == 'No'),'not-valid': (validationCSS && personalIdentityForm.controls.LGBTI.status==='INVALID')}"
+            (click)="lgbti2.click()">
+            <div><input type="radio" value="No" name="LGBTI" formControlName="LGBTI" #lgbti2></div>
+            <div> No</div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="outline" [ngClass]="{'selected-option' : (personalIdentityForm?.value?.LGBTI == 'Ally'),'not-valid': (validationCSS && personalIdentityForm.controls.LGBTI.status==='INVALID')}"
+            (click)="lgbti3.click()">
+            <div><input type="radio" value="Ally" name="LGBTI" formControlName="LGBTI" #lgbti3></div>
+            <div> Ally</div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="outline"
+            [ngClass]="{'selected-option' : (personalIdentityForm?.value?.LGBTI == 'Prefer not to disclose'),'not-valid': (validationCSS && personalIdentityForm.controls.LGBTI.status==='INVALID')}"
+            (click)="lgbti4.click()">
+            <div><input type="radio" value="Prefer not to disclose" name="LGBTI" formControlName="LGBTI" #lgbti4></div>
+            <div> Prefer not to disclose</div>
+          </div>
+        </div>
+
+        <!-- <div class="col-lg-4">
+          <select class="form-control" formControlName="LGBTI">
+            <option [ngValue]="null" disabled>Please Select</option>
+            <option value='yes'>Yes</option>
+            <option value='no'>No</option>
+            <option value='alley'>Alley</option>
+          </select>
+        </div> -->
+
+        <div class="col-lg-12 subheading">Parenting Responsibilities</div>
+
+        <div class="col-lg-3">
+          <div class="outline" [ngClass]="{'selected-option' : (personalIdentityForm?.value?.parentingRes == 'Yes'),'not-valid': (validationCSS && personalIdentityForm.controls.parentingRes.status==='INVALID')}"
+            (click)="parentingRes1.click()">
+            <div><input type="radio" value="Yes" name="parentingRes" formControlName="parentingRes" #parentingRes1>
+            </div>
+            <div> Yes</div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="outline" [ngClass]="{'selected-option' : (personalIdentityForm?.value?.parentingRes == 'No'),'not-valid': (validationCSS && personalIdentityForm.controls.parentingRes.status==='INVALID')}"
+            (click)="parentingRes2.click()">
+            <div><input type="radio" value="No" name="parentingRes" formControlName="parentingRes" #parentingRes2></div>
+            <div> No</div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="outline"
+            [ngClass]="{'selected-option' : (personalIdentityForm?.value?.parentingRes == 'Prefer not to disclose'),'not-valid': (validationCSS && personalIdentityForm.controls.parentingRes.status==='INVALID')}"
+            (click)="parentingRes3.click()">
+            <div><input type="radio" value="Prefer not to disclose" name="parentingRes" formControlName="parentingRes"
+                #parentingRes3></div>
+            <div> Prefer not to disclose</div>
+          </div>
+        </div>
+
+        <!-- <div class="col-lg-4">
+          <select class="form-control" formControlName="parentingRes">
+            <option [ngValue]="null" disabled>Please Select</option>
+            <option value='yes'>Yes</option>
+            <option value='no'>No</option>
+          </select>
+        </div> -->
+
+        <div class="col-lg-12 subheading">Caring Responsibilities</div>
+
+        <div class="col-lg-3">
+          <div class="outline" [ngClass]="{'selected-option' : (personalIdentityForm?.value?.caringRes == 'Yes'),'not-valid': (validationCSS && personalIdentityForm.controls.caringRes.status==='INVALID')}"
+            (click)="caringRes1.click()">
+            <div><input type="radio" value="Yes" name="caringRes" formControlName="caringRes" #caringRes1></div>
+            <div>Yes</div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="outline" [ngClass]="{'selected-option' : (personalIdentityForm?.value?.caringRes == 'No'),'not-valid': (validationCSS && personalIdentityForm.controls.caringRes.status==='INVALID')}"
+            (click)="caringRes2.click()">
+            <div><input type="radio" value="No" name="caringRes" formControlName="caringRes" #caringRes2></div>
+            <div>No</div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="outline"
+            [ngClass]="{'selected-option' : (personalIdentityForm?.value?.caringRes == 'Prefer not to disclose'),'not-valid': (validationCSS && personalIdentityForm.controls.caringRes.status==='INVALID')}"
+            (click)="caringRes3.click()">
+            <div><input type="radio" value="Prefer not to disclose" name="caringRes" formControlName="caringRes"
+                #caringRes3></div>
+            <div> Prefer not to disclose</div>
+          </div>
+        </div>
+
+        <!-- <div class="col-lg-4">
+          <select class="form-control" formControlName="caringRes">
+            <option [ngValue]="null" disabled>Please Select</option>
+            <option value='yes'>Yes</option>
+            <option value='no'>No</option>
+          </select>
+        </div> -->
+
+        <div class="col-lg-12 subheading">Disability</div>
+
+
+        <div class="col-lg-3">
+          <div class="outline" [ngClass]="{'selected-option' : (personalIdentityForm?.value?.disability == 'Yes'),'not-valid': (validationCSS && personalIdentityForm.controls.disability.status==='INVALID')}"
+            (click)="disability1.click()">
+            <div><input type="radio" value="Yes" name="disability" formControlName="disability" #disability1></div>
+            <div>Yes</div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="outline" [ngClass]="{'selected-option' : (personalIdentityForm?.value?.disability == 'No'),'not-valid': (validationCSS && personalIdentityForm.controls.disability.status==='INVALID')}"
+            (click)="disability2.click()">
+            <div><input type="radio" value="No" name="disability" formControlName="disability" #disability2></div>
+            <div>No</div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="outline"
+            [ngClass]="{'selected-option' : (personalIdentityForm?.value?.disability == 'Prefer not to disclose'),'not-valid': (validationCSS && personalIdentityForm.controls.disability.status==='INVALID')}"
+            (click)="disability3.click()">
+            <div><input type="radio" value="Prefer not to disclose" name="disability" formControlName="disability"
+                #disability3></div>
+            <div> Prefer not to disclose</div>
+          </div>
+        </div>
+
+        <!-- <div class="col-lg-4">
+          <select class="form-control" formControlName="disability">
+            <option [ngValue]="null" disabled>Please Select</option>
+            <option value='yes'>Yes</option>
+            <option value='no'>No</option>
+          </select>
+        </div> -->
+
+        <div class="col-lg-12 subheading">Socio-Economic Status in Childhood</div>
+
+        <div class="col-lg-3">
+          <div class="outline"
+            [ngClass]="{'selected-option' : (personalIdentityForm?.value?.socioEconomicStatusinChildhood == 'Low'),'not-valid': (validationCSS && personalIdentityForm.controls.socioEconomicStatusinChildhood.status==='INVALID')}"
+            (click)="sesc1.click()">
+            <div><input type="radio" value="Low" name="socioEconomicStatusinChildhood"
+                formControlName="socioEconomicStatusinChildhood" #sesc1></div>
+            <div>Low</div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="outline"
+            [ngClass]="{'selected-option' : (personalIdentityForm?.value?.socioEconomicStatusinChildhood == 'Medium'),'not-valid': (validationCSS && personalIdentityForm.controls.socioEconomicStatusinChildhood.status==='INVALID')}"
+            (click)="sesc2.click()">
+            <div><input type="radio" value="Medium" name="socioEconomicStatusinChildhood"
+                formControlName="socioEconomicStatusinChildhood" #sesc2></div>
+            <div>Medium</div>
+          </div>
+        </div>
+        <div class="col-lg-3">
+          <div class="outline"
+            [ngClass]="{'selected-option' : (personalIdentityForm?.value?.socioEconomicStatusinChildhood == 'High'),'not-valid': (validationCSS && personalIdentityForm.controls.socioEconomicStatusinChildhood.status==='INVALID')}"
+            (click)="sesc3.click()">
+            <div><input type="radio" value="High" name="socioEconomicStatusinChildhood"
+                formControlName="socioEconomicStatusinChildhood" #sesc3></div>
+            <div>High</div>
+          </div>
+        </div>
+
+        <!-- <div class="col-lg-4">
+          <select class="form-control" formControlName="socioEconomicStatusinChildhood">
+            <option [ngValue]="null" disabled>Please Select</option>
+            <option value='low'>Low</option>
+            <option value='medium'>Medium</option>
+            <option value='high'>High</option>
+          </select>
+        </div> -->
+
+      </div>
+  </form>
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+
+  <div class="heading">
+    <H2>B. Employment Status</H2>
+  </div>
+
+  <form [formGroup]="employmentStatusForm">
+    <div class="row">
+      <div class="col-lg-12 subheading">Employee Status</div>
+
+      <div class="col-lg-3">
+        <div class="outline"
+          [ngClass]="{'selected-option' : (employmentStatusForm?.value?.employeeStatus == 'Employee'),'not-valid': (validationCSS && employmentStatusForm.controls.employeeStatus.status==='INVALID')}"
+          (click)="employeeStatus1.click()">
+          <div><input type="radio" value="Employee" name="employeeStatus" formControlName="employeeStatus"
+              #employeeStatus1></div>
+          <div>Employee</div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="outline"
+          [ngClass]="{'selected-option' : (employmentStatusForm?.value?.employeeStatus == 'Contractor'),'not-valid': (validationCSS && employmentStatusForm.controls.employeeStatus.status==='INVALID')}"
+          (click)="employeeStatus2.click()">
+          <div><input type="radio" value="Contractor" name="employeeStatus" formControlName="employeeStatus"
+              #employeeStatus2></div>
+          <div>Contractor</div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="outline"
+          [ngClass]="{'selected-option' : (employmentStatusForm?.value?.employeeStatus == 'Volunteer'),'not-valid': (validationCSS && employmentStatusForm.controls.employeeStatus.status==='INVALID')}"
+          (click)="employeeStatus3.click()">
+          <div><input type="radio" value="Volunteer" name="employeeStatus" formControlName="employeeStatus"
+              #employeeStatus3></div>
+          <div>Volunteer</div>
+        </div>
+      </div>
+
+      <!-- <div class="col-lg-4">
+          <select class="form-control" formControlName="employeeStatus">
+            <option [ngValue]="null" disabled>Please Select</option>
+            <option value='employee'>Employee</option>
+            <option value='contractor'>Contractor</option>
+            <option value='Volunteer'>Volunteer</option>
+          </select>
+        </div> -->
+
+      <div class="col-lg-12 subheading">Hierarchical Level</div>
+
+      <div class="col-lg-3">
+        <div class="outline"
+          [ngClass]="{'selected-option' : (employmentStatusForm?.value?.hierarchicalLevel == 'Full-Time'),'not-valid': (validationCSS && employmentStatusForm.controls.hierarchicalLevel.status==='INVALID')}"
+          (click)="hierarchicalLevel1.click()">
+          <div><input type="radio" value="Full-Time" name="hierarchicalLevel" formControlName="hierarchicalLevel"
+              #hierarchicalLevel1></div>
+          <div>Full-Time</div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="outline"
+          [ngClass]="{'selected-option' : (employmentStatusForm?.value?.hierarchicalLevel == 'Part-Time'),'not-valid': (validationCSS && employmentStatusForm.controls.hierarchicalLevel.status==='INVALID')}"
+          (click)="hierarchicalLevel2.click()">
+          <div><input type="radio" value="Part-Time" name="hierarchicalLevel" formControlName="hierarchicalLevel"
+              #hierarchicalLevel2></div>
+          <div>Part-Time</div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="outline"
+          [ngClass]="{'selected-option' : (employmentStatusForm?.value?.hierarchicalLevel == 'Casual'),'not-valid': (validationCSS && employmentStatusForm.controls.hierarchicalLevel.status==='INVALID')}"
+          (click)="hierarchicalLevel3.click()">
+          <div><input type="radio" value="Casual" name="hierarchicalLevel" formControlName="hierarchicalLevel"
+              #hierarchicalLevel3></div>
+          <div>Casual</div>
+        </div>
+      </div>
+
+      <!-- <div class="col-lg-4">
+          <select class="form-control" formControlName="hierarchicalLevel">
+            <option [ngValue]="null" disabled>Please Select</option>
+            <option value='full-time'>Full-Time</option>
+            <option value='part-time'>Part-Time</option>
+            <option value='casula'>Casula</option>
+          </select>
+        </div> -->
+
+      <div class="col-lg-12 subheading">Employment Arrangement</div>
+
+      <div class="col-lg-3">
+        <div class="outline"
+          [ngClass]="{'selected-option' : (employmentStatusForm?.value?.employmentArrangement == 'Employee'),'not-valid': (validationCSS && employmentStatusForm.controls.employmentArrangement.status==='INVALID')}"
+          (click)="empArr1.click()">
+          <div><input type="radio" value="Employee" name="employmentArrangement" formControlName="employmentArrangement"
+              #empArr1></div>
+          <div>Employee</div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="outline"
+          [ngClass]="{'selected-option' : (employmentStatusForm?.value?.employmentArrangement == 'Leader CEO'),'not-valid': (validationCSS && employmentStatusForm.controls.employmentArrangement.status==='INVALID')}"
+          (click)="empArr2.click()">
+          <div><input type="radio" value="Leader CEO" name="employmentArrangement"
+              formControlName="employmentArrangement" #empArr2></div>
+          <div>Leader CEO</div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="outline"
+          [ngClass]="{'selected-option' : (employmentStatusForm?.value?.employmentArrangement == 'Owner'),'not-valid': (validationCSS && employmentStatusForm.controls.employmentArrangement.status==='INVALID')}"
+          (click)="empArr3.click()">
+          <div><input type="radio" value="Owner" name="employmentArrangement" formControlName="employmentArrangement"
+              #empArr3></div>
+          <div>Owner</div>
+        </div>
+      </div>
+
+    </div>
+  </form>
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+
+  <div class="heading">
+    <H2>C. Professional Background</H2>
+  </div>
+
+  <form [formGroup]="professionalBackground">
+    <div class="row">
+
+      <div class="col-lg-12 subheading">Education</div>
+      <div class="col-lg-4">
+        <div class="outline"
+          [ngClass]="{'selected-option' : (professionalBackground?.value?.education == hsConstant),'not-valid': (validationCSS && professionalBackground.controls.education.status==='INVALID')}"
+          (click)="education1.click()">
+          <div><input type="radio" [value]="hsConstant" name="education" formControlName="education" #education1></div>
+          <div>< HighSchool</div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="outline"
+            [ngClass]="{'selected-option' : (professionalBackground?.value?.education == 'Highschool'),'not-valid': (validationCSS && professionalBackground.controls.education.status==='INVALID')}"
+            (click)="education2.click()">
+            <div><input type="radio" value="Highschool" name="education" formControlName="education" #education2></div>
+            <div>Highschool</div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="outline"
+            [ngClass]="{'selected-option' : (professionalBackground?.value?.education == 'Tafe/Trade'),'not-valid': (validationCSS && professionalBackground.controls.education.status==='INVALID')}"
+            (click)="education3.click()">
+            <div><input type="radio" value="Tafe/Trade" name="education" formControlName="education" #education3></div>
+            <div>Tafe/Trade</div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="outline"
+            [ngClass]="{'selected-option' : (professionalBackground?.value?.education == 'Under-Graduate'),'not-valid': (validationCSS && professionalBackground.controls.education.status==='INVALID')}"
+            (click)="education4.click()">
+            <div><input type="radio" value="Under-Graduate" name="education" formControlName="education" #education4>
+            </div>
+            <div>Under-Graduate</div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="outline"
+            [ngClass]="{'selected-option' : (professionalBackground?.value?.education == 'Post-Graduate'),'not-valid': (validationCSS && professionalBackground.controls.education.status==='INVALID')}"
+            (click)="education5.click()">
+            <div><input type="radio" value="Post-Graduate" name="education" formControlName="education" #education5>
+            </div>
+            <div>Post-Graduate</div>
+          </div>
+        </div>
+
+        <div class="col-lg-12 subheading">Role</div>
+        <div class="col-lg-4">
+          <div class="outline"
+            [ngClass]="{'selected-option' : (professionalBackground?.value?.role == 'Individual Contributor'),'not-valid': (validationCSS && professionalBackground.controls.role.status==='INVALID')}"
+            (click)="role1.click()">
+            <div><input type="radio" value="Individual Contributor" name="role" formControlName="role" #role1></div>
+            <div>Individual Contributor</div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="outline"
+            [ngClass]="{'selected-option' : (professionalBackground?.value?.role == 'People Leader'),'not-valid': (validationCSS && professionalBackground.controls.role.status==='INVALID')}"
+            (click)="role2.click()">
+            <div><input type="radio" value="People Leader" name="role" formControlName="role" #role2></div>
+            <div>People Leader</div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="outline"
+            [ngClass]="{'selected-option' : (professionalBackground?.value?.role == 'Leader of Leaders'),'not-valid': (validationCSS && professionalBackground.controls.role.status==='INVALID')}"
+            (click)="role3.click()">
+            <div><input type="radio" value="Leader of Leaders" name="role" formControlName="role" #role3></div>
+            <div>Leader of Leaders</div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="outline"
+            [ngClass]="{'selected-option' : (professionalBackground?.value?.role == 'Leader of Division/Function Department'),'not-valid': (validationCSS && professionalBackground.controls.role.status==='INVALID')}"
+            (click)="role4.click()">
+            <div><input type="radio" value="Leader of Division/Function Department" name="role" formControlName="role"
+                #role4></div>
+            <div>Leader of Division/Function Department</div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="outline"
+            [ngClass]="{'selected-option' : (professionalBackground?.value?.role == 'Leader of Organisation'),'not-valid': (validationCSS && professionalBackground.controls.role.status==='INVALID')}"
+            (click)="role5.click()">
+            <div><input type="radio" value="Leader of Organisation" name="role" formControlName="role" #role5></div>
+            <div>Leader of Organisation</div>
+          </div>
+        </div>
+
+        <div class="col-lg-12 subheading">Organisation Type</div>
+        <div class="col-lg-4">
+          <div class="outline"
+            [ngClass]="{'selected-option' : (professionalBackground?.value?.organisationType == 'Government'),'not-valid': (validationCSS && professionalBackground.controls.organisationType.status==='INVALID')}"
+            (click)="orgType1.click()">
+            <div><input type="radio" value="Government" name="organisationType" formControlName="organisationType"
+                #orgType1></div>
+            <div>Government</div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="outline"
+            [ngClass]="{'selected-option' : (professionalBackground?.value?.organisationType == 'Private Company'),'not-valid': (validationCSS && professionalBackground.controls.organisationType.status==='INVALID')}"
+            (click)="orgType2.click()">
+            <div><input type="radio" value="Private Company" name="organisationType" formControlName="organisationType"
+                #orgType2></div>
+            <div>Private Company</div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="outline"
+            [ngClass]="{'selected-option' : (professionalBackground?.value?.organisationType == 'Listed Company'),'not-valid': (validationCSS && professionalBackground.controls.organisationType.status==='INVALID')}"
+            (click)="orgType3.click()">
+            <div><input type="radio" value="Listed Company" name="organisationType" formControlName="organisationType"
+                #orgType3></div>
+            <div>Listed Company</div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="outline"
+            [ngClass]="{'selected-option' : (professionalBackground?.value?.organisationType == 'Not-For-Profit'),'not-valid': (validationCSS && professionalBackground.controls.organisationType.status==='INVALID')}"
+            (click)="orgType4.click()">
+            <div><input type="radio" value="Not-For-Profit" name="organisationType" formControlName="organisationType"
+                #orgType4></div>
+            <div>Not-For-Profit</div>
+          </div>
+        </div>
+        <!-- style="height: 3.4em;"  -->
+        <div class="col-lg-12 subheading">Organisation</div>
+        <div class="input-group col-lg-8 org-name">
+          <input type="text" class="form-control" placeholder="Insert Name of Organisation here" formControlName="organisation"
+          [ngClass]="{'not-valid': (validationCSS && professionalBackground.controls.organisation.status==='INVALID')}">
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-4">
+          <div class="mini-heading">Organisation Division</div>
+          <select class="form-control" formControlName="organisationDivision"
+          [ngClass]="{'not-valid': (validationCSS && professionalBackground.controls.organisationDivision.status==='INVALID')}">
+            <option [ngValue]="null" disabled>Please Select</option>
+            <option value='Apple'>Apple</option>
+            <option value='Samsung'>Samsung</option>
+            <option value='Sony'>Sony</option>
+          </select>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="mini-heading">Industry</div>
+          <select class="form-control" formControlName="industry"
+          [ngClass]="{'not-valid': (validationCSS && professionalBackground.controls.industry.status==='INVALID')}">
+            <option [ngValue]="null" disabled>Please Select</option>
+            <option value='Apple'>Apple</option>
+            <option value='Samsung'>Samsung</option>
+            <option value='Sony'>Sony</option>
+          </select>
+        </div>
+
+
+        <div class="col-lg-4">
+          <div class="mini-heading">Location</div>
+          <select class="form-control" formControlName="location"
+          [ngClass]="{'not-valid': (validationCSS && professionalBackground.controls.location.status==='INVALID')}">
+            <option [ngValue]="null" disabled>Please Select</option>
+            <option value='India'>India</option>
+            <option value='Australia'>Australia</option>
+            <option value='USA'>USA</option>
+          </select>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 subheading">Work location same as passport</div>
+        <div class="col-lg-4">
+          <div class="outline"
+            [ngClass]="{'selected-option' : (professionalBackground?.value?.workLocationSameAsPassport == 'Yes'),'not-valid': (validationCSS && professionalBackground.controls.workLocationSameAsPassport.status==='INVALID')}"
+            (click)="wlsame1.click()">
+            <div><input type="radio" value='Yes' name="workLocationSameAsPassport"
+                formControlName="workLocationSameAsPassport" #wlsame1></div>
+            <div>Yes</div>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="outline"
+            [ngClass]="{'selected-option' : (professionalBackground?.value?.workLocationSameAsPassport == 'No'),'not-valid': (validationCSS && professionalBackground.controls.workLocationSameAsPassport.status==='INVALID')}"
+            (click)="wlsame2.click()">
+            <div><input type="radio" value='No' name="workLocationSameAsPassport"
+                formControlName="workLocationSameAsPassport" #wlsame2></div>
+            <div>No</div>
+          </div>
+        </div>
+
+      </div>
+  </form>
+  <br />
+  <br />
+  <div class="row">
+    <div class="col-auto">
+      <!-- [disabled]="!personalIdentityForm.valid || !employmentStatusForm.valid || !professionalBackground.valid" -->
+      <button type="button" class="btn btn-warn submit-btn"
+        
+        (click)="submit()" #submitbtn>
+        Submit
+      </button>
+      <div class="outer-line" (click)="submitbtn.click()">&nbsp;</div>
+    </div>
+  </div>
+  <br />
+  <br />
+  <br />
+  <br />
+</div>

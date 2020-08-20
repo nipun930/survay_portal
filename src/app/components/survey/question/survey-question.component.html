@@ -1,0 +1,63 @@
+<div class="ques-container container">
+  <img class="wave-bg" src="../../../../assets/images/header-desktop.svg">
+  <div class="ques-no">
+    <span>{{(question.key+'').toUpperCase()}}</span>
+    <span>
+      <img src="https://mwah.live/wp-content/themes/mwah/images/logo-home.svg" width="138" height="32" alt="">
+    </span>
+  </div>
+  <div class="question">
+    {{question.text}}
+  </div>
+  <div class="ques-input">
+    <div class="labels">{{question.leftLabel}}</div>
+    <div style="width: 100vw;">
+      <div class="connector"></div>
+      <div class="select-value">
+        <input type="radio" name="range" value=1 [checked]="question?.value && (question?.value == 1)"
+        [ngClass]="{'selected-btn' : (question?.value && (question?.value == 1))}"(click)="selectAnswer($event.target.value)">
+        <input type="radio" name="range" value=2 [checked]="question?.value && (question?.value == 2)"
+        [ngClass]="{'selected-btn' : (question?.value == 2)}" (click)="selectAnswer($event.target.value)">
+        <input type="radio" name="range" value=3 [checked]="question?.value && (question?.value == 3)"
+        [ngClass]="{'selected-btn' : (question?.value == 3)}" (click)="selectAnswer($event.target.value)">
+        <input type="radio" name="range" value=4 [checked]="question?.value && (question?.value == 4)"
+        [ngClass]="{'selected-btn' : (question?.value == 4)}" (click)="selectAnswer($event.target.value)">
+        <input type="radio" name="range" value=5 [checked]="question?.value && (question?.value == 5)"
+        [ngClass]="{'selected-btn' : (question?.value == 5)}" (click)="selectAnswer($event.target.value)">
+        <input type="radio" name="range" value=6 [checked]="question?.value && (question?.value == 6)"
+        [ngClass]="{'selected-btn' : (question?.value == 6)}" (click)="selectAnswer($event.target.value)">
+        <input type="radio" name="range" value=7 [checked]="question?.value && (question?.value == 7)"
+        [ngClass]="{'selected-btn' : (question?.value == 7)}" (click)="selectAnswer($event.target.value)">
+        <input type="radio" name="range" value=8 [checked]="question?.value && (question?.value == 8)"
+        [ngClass]="{'selected-btn' : (question?.value == 8)}" (click)="selectAnswer($event.target.value)">
+        <input type="radio" name="range" value=9 [checked]="question?.value && (question?.value == 9)"
+        [ngClass]="{'selected-btn' : (question?.value == 9)}" (click)="selectAnswer($event.target.value)">
+        <input type="radio" name="range" value=10 [checked]="question?.value && (question?.value == 10)"
+        [ngClass]="{'selected-btn' : (question?.value == 10)}" (click)="selectAnswer($event.target.value)">
+      </div>
+
+    </div>
+    <div class="labels">{{question.rightLabel}}</div>
+  </div>
+  <div class="ques-input-label-mobile">
+    <div class="labels">{{question.leftLabel}}</div>
+    <div class="labels">{{question.rightLabel}}</div>
+  </div>
+  <div class="ques-status">
+    <button (click)="previous()" class="btn left-arrow" [disabled]="!questionIndex">
+      <img src="../../../../assets/images/arrow-left.svg" style="height: 15px;" *ngIf="questionIndex">
+      <img src="../../../../assets/images/arrow-left-disabled.svg" style="height: 15px;" *ngIf="!questionIndex">
+    </button>
+    <div class="question-count-bar">
+      <div class="progress-container" [style.width.%]="progressBarWidth">
+      </div>
+    </div>
+    <button (click)="next()" class="btn right-arrow" [disabled]="">
+      <img src="../../../../assets/images/arrow-right.svg" style="height: 15px;" *ngIf="(question?.value)">
+      <img src="../../../../assets/images/arrow-right-disabled.svg" style="height: 15px;" *ngIf="!(question?.value)">
+    </button>
+  </div>
+  <div class="curr-ques">
+    {{questionIndex + 1 + ' of ' + survey?.questions?.length}}
+  </div>
+</div>
